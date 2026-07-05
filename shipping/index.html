@@ -365,7 +365,7 @@
     </main>
 
     <script>
-        const baseFees = { japan: 8500, thailand: 4500 };
+        const baseFees = { japan: 9000, thailand: 4500 };
 
         // Catalog items fix here
         const itemCatalog = [
@@ -373,6 +373,7 @@
             { id: 'cards', name: 'cards', jpPrice: 1500, thPrice: 1000 },
             { id: 'shikishi', name: 'shikishi', jpPrice: 3000, thPrice: 1800 },
             { id: 'figures', name: 'figures', jpPrice: 35000, thPrice: 30000 },
+            { id: 'minifigures', name: 'mini figures', jpPrice: 1900, thPrice: 1400 },
             { id: 'badges', name: 'pin badges', jpPrice: 1000, thPrice: 1000 },
             { id: 'plushies10', name: 'plushies (≤10cm)', jpPrice: 5000, thPrice: 4000 },
             { id: 'plushies20', name: 'plushies (20cm)', jpPrice: 9000, thPrice: 7000 },
@@ -394,12 +395,15 @@
         let activeCountry = 'japan';
         let selectedItems = {}; 
 
-        function applyLiveTimestamp() {
-            const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
-            const formattedToday = new Date().toLocaleDateString('en-US', dateOptions);
-            const prefix = window.getI18nText ? window.getI18nText('shipping_last_update') : "last update:";
-            document.getElementById('live-date-stamp').innerText = `${prefix} ${formattedToday}`;
-        }
+function applyLiveTimestamp() {
+    const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+    
+    const customDate = new Date('2026-07-06'); 
+    
+    const formattedToday = customDate.toLocaleDateString('en-US', dateOptions);
+    const prefix = window.getI18nText ? window.getI18nText('shipping_last_update') : "last update:";
+    document.getElementById('live-date-stamp').innerText = `${prefix} ${formattedToday}`;
+}
 
         function generateGoodsGrid() {
             const container = document.getElementById('goods-container');

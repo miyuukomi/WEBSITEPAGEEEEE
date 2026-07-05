@@ -8,29 +8,39 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Baskervville:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
     
-    <!-- Connected global header + dynamic localized translators -->
     <script src="/lang-switch.js"></script>
     <script src="/site-header.js"></script>
     <link rel="stylesheet" href="/style.css">
     
     <style>
-        body {
-            padding-top: 0rem;
-            margin: 0;
-            background-color: var(--bg-porcelain);
-            color: var(--type-dusty-mauve);
-            font-family: 'Baskervville', serif;
-            background-image: repeating-linear-gradient(90deg, transparent, transparent 14px, rgba(184, 115, 116, 0.04) 14px, rgba(184, 115, 116, 0.04) 15px);
+         :root {
+            --ballet-pink-faint: #fff4f5;
+            --ballet-stripe: #fbeee0;
+            --crisp-white: #ffffff;
+            --frame-gold: #d5b4a9;
+            --text-dark: #4a3b39;
+            --text-muted: #8e7673;
+            
+            --pinstripe-pattern: linear-gradient(90deg, #ffffff 0px, #ffffff 6px, #fff5f6 6px, #fff5f6 12px);
         }
 
-        /* Snaps the bar to the top edge to eliminate the background pattern gap */
-        #global-header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
+        body {
+            background-color: var(--bg-porcelain);
+            color: var(--text-dark);
+            font-family: 'Baskervville', serif;
+            font-size: 0.92rem;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
+
+        .main-container {
+            max-width: 1100px;
+            margin: 4rem auto 6rem auto;
+            padding: 0 2rem;
+        }
+
 
         .contact-wrapper { 
             max-width: 850px; 
@@ -129,6 +139,9 @@
             max-width: 290px; 
             box-sizing: border-box;
             position: relative;
+            cursor: pointer;
+            user-select: none;
+            -webkit-user-select: none;
         }
 
         .photo-placeholder { 
@@ -150,6 +163,25 @@
             line-height: 1.4;
             text-transform: lowercase;
             display: block;
+        }
+
+        .pop-particle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 2000;
+            will-change: transform, opacity;
+            animation: burstAndFloat 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        @keyframes burstAndFloat {
+            0% {
+                transform: translate(-50%, -50%) scale(0.4) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(calc(-50% + var(--target-x)), calc(-50% + var(--target-y))) scale(1.1) rotate(var(--target-angle));
+                opacity: 0;
+            }
         }
     </style>
 </head>
@@ -182,11 +214,9 @@
         </div>
         
         <div class="mood-board">
-            <div class="polaroid-frame">
-                <a href="/minori" style="text-decoration: none;">
-                    <div class="photo-placeholder" style="background-image: url('https://media1.tenor.com/m/Y24QkzcI13IAAAAd/minori-minori-hanasato.gif');"></div>
-                    <span class="polaroid-caption">pat on minori's head for goodluck!</span>
-                </a>
+            <div class="polaroid-frame" id="clover-trigger">
+                <div class="photo-placeholder" style="background-image: url(https://i.redd.it/cards-for-the-event-lets-stream-together-wedding-live-v0-lpfu2na2go3d1.jpg?width=2048&format=pjpg&auto=webp&s=193ef50a15ce37aec846e9299ec9e261f14d02c3);"></div>
+                <span class="polaroid-caption">pat minori's head for goodluck!</span>
             </div>
         </div>
     </main>
@@ -194,5 +224,52 @@
     <footer class="site-footer fade-up delay-2">
         <p data-i18n="global_footer_info">allnightthinkingofyou@gmail.com ❤︎⁠ located in yangon, myanmar</p>
     </footer>
+
+    <script>
+        document.getElementById('clover-trigger').addEventListener('click', function(e) {
+            
+            const yourCustomSound = new Audio('pop.mp3'); 
+            yourCustomSound.play().catch(err => {
+                console.log("Audio couldn't play. Double-check your file path or filename spelling!", err);
+            });
+
+            // 2. Particle Engine (Three-leaf clovers + Pink Confetti)
+            const particleCount = 12; 
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'pop-particle';
+                
+                if (Math.random() > 0.5) {
+                    particle.textContent = '☘️';
+                    particle.style.fontSize = (1 + Math.random() * 0.6) + 'rem';
+                } else {
+                    particle.style.width = (5 + Math.random() * 6) + 'px';
+                    particle.style.height = (5 + Math.random() * 6) + 'px';
+                    
+                    const pinkShades = ['#ffccd5', '#ffb3c1', '#ffc6ff', '#fbc4ab', '#ff9aa2'];
+                    particle.style.backgroundColor = pinkShades[Math.floor(Math.random() * pinkShades.length)];
+                    particle.style.borderRadius = Math.random() > 0.5 ? '50%' : '1px'; 
+                }
+                
+                particle.style.left = e.clientX + 'px';
+                particle.style.top = e.clientY + 'px';
+                
+                const targetX = (Math.random() - 0.5) * 160 + 'px';
+                const targetY = (-50 - Math.random() * 110) + 'px';
+                const targetAngle = (Math.random() - 0.5) * 540 + 'deg';
+                
+                particle.style.setProperty('--target-x', targetX);
+                particle.style.setProperty('--target-y', targetY);
+                particle.style.setProperty('--target-angle', targetAngle);
+                
+                document.body.appendChild(particle);
+                
+                particle.addEventListener('animationend', function() {
+                    particle.remove();
+                });
+            }
+        });
+    </script>
 </body>
 </html>

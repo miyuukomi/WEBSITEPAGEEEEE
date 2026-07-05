@@ -60,9 +60,9 @@ const translations = {
         zh: "all night, thinking of you."
     },
     home_tagline: {
-        en: "jp & thai proxy service specializing in anime goods ",
-        my: "Anime ပစ္စည်းလေးတွေကို သီးသန့် အထူးပြု ဝယ်ယူပေးနေတဲ့ JP & Thai Proxy ဝန်ဆောင်မှုလေးပါရှင့် ",
-        zh: "专搞动漫周边的日本、泰国专属代购小铺哈。"
+        en: "bringing your favourite goods home to you! ",
+        my: "bringing your favourite goods home to you! ",
+        zh: "bringing your favourite goods home to you!"
     },
     home_cta: {
         en: "place your order now ❤︎⁠",
@@ -95,9 +95,9 @@ const translations = {
         zh: "点击此处即可轻松查询包裹的当前状态与最新物流详情。"
     },
     home_link_terms_title: {
-        en: "♡ calculate your shipping fees",
-        my: "♡ ပို့ဆောင်ခ တွက်ချက်ကြည့်မယ်",
-        zh: "♡ 来算算运费好多钱哈"
+        en: "♡ contact us ",
+        my: "♡ဆက်သွယ်ရန်",
+        zh: "♡ 联系我们"
     },
     home_link_terms_desc: {
         en: "click here to read our you can calculate your shipping fees before placing an order",
@@ -264,6 +264,11 @@ const translations = {
         en: "shipping fee is not included in this calculation. you have to pay them upon arrival. you can calculate your shipping fees before ordering in our shipping fees calculator.",
         my: "ဤတွက်ချက်မှုတွင် ပြည်ပပို့ဆောင်ခ မပါဝင်သေးပါရှင့်။ ပစ္စည်းရောက်ရှိချိန်မှသာ ပေးချေရမည် ဖြစ်ပါသည်။ အော်ဒါမတင်မီ ပို့ဆောင်ခကို ပို့ဆောင်ခတွက်ချက်စက်တွင် ကြိုတင်တွက်ချက်ကြည့်နိုင်ပါတယ်ရှင့်။",
         zh: "当前计算结果不包含国际运费，运费需在到货后结算。下单前您可以通过我们的运费计算器提前估算。"
+    },
+        order_calc_disclaimer2: {
+        en: "As of July 6, 2026, the expected waiting time is 1-2 weeks after warehouse arrival. However, due to the new Thai Airways excess baggage policy, shipping times may extend up to a month. By clicking CHECKOUT you acknowledge and accept these potential delays.",
+        my: "၀၂၆ ခုနှစ်၊ ဇူလိုင်လ ၇ ရက်နေ့မှစ၍ ဂိုဒေါင်သို့ ပစ္စည်းရောက်ရှိပြီးနောက် မျှော်မှန်းစောင့်ဆိုင်းချိန်မှာ ၁ ပတ်မှ ၂ ပတ်အထိ ဖြစ်ပါသည်။သို့သော်လည်း ထိုင်းလေကြောင်းလိုင်း (Thai Airways) ၏ ဝန်စည်အပိုသယ်ဆောင်ခွင့်ဆိုင်ရာ မူဝါဒအသစ်ကြောင့် ပစ္စည်းပို့ဆောင်ချိန်မှာ တစ်လအထိ ကြာမြင့်နိုင်ပါသည်ရှင့်။Checkout ကို နှိပ်ခြင်းဖြင့် ဤသို့ ကြန့်ကြာမှုများ ရှိလာနိုင်သည်ကို သင်မှ သိရှိနားလည်ပြီး သဘောတူလက်ခံရာ ရောက်ပါသည်။",
+        zh: "自 2026年7月7日 起，宝贝到达仓库后的预计等待时间为 1–2 周。但由于泰国航空（Thai Airways）出台了最新的超重行李政策，物流运输时间可能会延长 长达一个月 噢。点击 “Checkout” 结算即代表宝子已明确知悉并接受上述可能出现的延误情况。。"
     },
     order_calc_total: {
         en: "total:",

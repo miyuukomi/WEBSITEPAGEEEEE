@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Baskervville:ital,wght@0,400;1,400&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
 :root {
@@ -143,225 +144,159 @@ h1, h2, h3, .editorial-title {
     opacity: 1;
     color: var(--accent-antique-rose);
 }
-
+/* ─── CLEAN FLOATING DROPDOWN SYSTEM (image_536c5c.png Style) ─── */
 .lang-bookmark-trigger {
     position: relative;
     display: inline-flex;
     align-items: center;
-}
-
-.lang-bookmark-tab-face {
-    padding: 0.45rem 1.2rem;
-    background-color: var(--bg-porcelain);
-    border: 1px dashed var(--type-dusty-mauve);
-    border-radius: 30px;
     cursor: pointer;
-    box-shadow: 2px 2px 0px var(--accent-tea-rose);
-    transition: all 0.25s ease;
+    user-select: none;
 }
 
+/* Main Pill Button Face */
+.lang-bookmark-tab-face {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1.2rem;
+    background-color: var(--bg-porcelain);
+    border: 1px solid var(--border-soft);
+    border-radius: 30px;
+    box-shadow: 0 2px 8px rgba(92, 75, 73, 0.06);
+    transition: all 0.2s ease;
+}
+
+/* Soft text opacity fade on hover */
 .lang-bookmark-trigger:hover .lang-bookmark-tab-face {
-    background-color: var(--bg-powder-blush);
-    box-shadow: 2px 2px 0px var(--type-dusty-mauve);
+    opacity: 0.8;
+    border-color: var(--type-dusty-mauve);
 }
 
 .lang-bookmark-tab-face span {
     font-family: 'Playfair Display', serif;
-    font-size: 0.8rem;
-    font-style: italic;
+    font-size: 0.85rem;
     color: var(--type-dusty-mauve);
 }
 
+/* Arrow indicator adjustment */
+.dropdown-arrow {
+    font-size: 0.7rem;
+    transition: transform 0.2s ease;
+}
 
+/* Rotates arrow upward when open, matching image_536c5c.png */
+.lang-bookmark-trigger.active-dropdown .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+/* Clean Floating Dropdown Box */
 .lang-bookmark-content {
     position: absolute;
     right: 0;
     top: 100%;
-    margin-top: 0.75rem;
-    background-color: var(--bg-porcelain);
-    border: 3px double var(--tone-oat-silk);
-    border-radius: 16px;
-    padding: 1.4rem 1.1rem 1.1rem 1.1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    width: 220px;
-    box-shadow: 0 10px 30px rgba(92, 75, 73, 0.08), 4px 4px 0px var(--bg-powder-blush); 
+    margin-top: 0.5rem;
+    background-color: #ffffff;
+    border: 1px solid rgba(92, 75, 73, 0.12);
+    border-radius: 8px;
+    padding: 0.5rem;
+    width: 180px;
+    box-shadow: 0 8px 24px rgba(92, 75, 73, 0.12); 
+    
+    /* Hidden state */
     opacity: 0;
     visibility: hidden;
-    transform: translateY(10px);
-    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    transform: translateY(-5px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+    z-index: 100000;
 }
 
-
-.lang-dropdown-ribbon {
-    width: 34px;
-    height: 18px;
-    margin: -0.5rem auto 0 auto;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23F6C7CF' d='M50,45 C40,22 12,22 22,50 C32,78 45,55 50,52 C55,55 68,78 78,50 C88,22 60,22 50,45 Z'/%3E%3C/svg%3E");
+/* Shows dropdown cleanly on toggle activation click */
+.lang-bookmark-trigger.active-dropdown .lang-bookmark-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
 }
 
-.lang-bookmark-title {
-    font-family: 'Pinyon Script', cursive;
-    font-size: 1.8rem;
-    text-align: center;
-    color: var(--type-dusty-mauve);
-    margin-bottom: 0.2rem;
-    line-height: 1;
-}
-
+/* Dropdown Menu Item List Layout */
 .lang-bookmark-buttons {
     display: flex;
     flex-direction: column;
-    gap: 0.55rem;
+    gap: 0.25rem;
 }
 
+/* Clean Row Buttons inside Menu Box */
 .lang-pill-btn {
-    background: #ffffff;
-    border: 1px solid var(--tone-oat-silk);
-    border-radius: 20px;
-    padding: 0.5rem 1rem;
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    padding: 0.55rem 0.75rem;
     font-family: 'Baskervville', serif;
     font-size: 0.88rem;
     color: var(--type-dusty-mauve);
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.6rem;
     width: 100%;
-    transition: all 0.2s ease;
     text-align: left;
+    transition: background-color 0.15s ease;
+}
+
+/* Highlights item cleanly when hovered */
+.lang-pill-btn:hover {
+    background-color: var(--bg-porcelain);
+    padding-left: 0.75rem; /* Disabled previous dramatic sliding text shift */
 }
 
 .lang-pill-btn .btn-heart {
     font-size: 0.75rem;
-    opacity: 0.5;
-    transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
-.lang-pill-btn:hover {
-    border-color: var(--type-dusty-mauve);
-    background-color: var(--bg-vintage-lace);
-    color: var(--type-dusty-mauve);
-    padding-left: 1.25rem; /* Soft kinetic sliding text effect on active hovers */
+    opacity: 0.4;
 }
 
 .lang-pill-btn:hover .btn-heart {
     opacity: 1;
-    transform: scale(1.1);
 }
 
-.lang-bookmark-trigger:hover .lang-bookmark-content {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-/* ==========================================================================
-   FINAL CLEANED MOBILE HEADER & OVERLAP FIX
-   ========================================================================== */
-  @media (max-width: 900px) {
-    /* Forces header containers into standard document flow so they push content down naturally */
-    .top-header-navigation,
-    #global-header {
-        position: sticky !important;
-        top: 0 !important;
-        left: 0 !important;
-        width: 100% !important;
-        height: auto !important;
-        z-index: 99999 !important;
-    }
-
-    /* Fixes the grid container stretching & restores breathing room on left/right edges */
-    .header-inner {
-        display: grid !important;
-        grid-template-columns: 1fr auto !important;
-        grid-template-rows: auto auto !important;
-        gap: 0.75rem 0rem !important;
-        padding: 1rem 1.2rem !important; /* FIXED: Keeps elements away from raw screen edges */
-        width: 100% !important;
-        max-width: 100vw !important;
-        box-sizing: border-box !important;
-        overflow: hidden !important;
-    }
-
-    /* Keeps brand text safe from clipping */
-    .sidebar-brand {
-        grid-column: 1;
-        grid-row: 1;
-        justify-self: start;
-        align-self: center;
-        font-size: 1.05rem !important;
-        padding-left: 0 !important; 
-        white-space: nowrap;
-    }
-
-    /* Keeps language trigger safe from clipping */
-    .lang-bookmark-trigger {
-        grid-column: 2;
-        grid-row: 1;
-        justify-self: end;
-        align-self: center;
-        padding-right: 0 !important; 
-    }
-
-    /* Full-width wrapping row for navigation links */
-    .sidebar-links {
-        grid-column: 1 / span 2;
-        grid-row: 2;
-        display: flex !important;
-        flex-wrap: wrap !important; /* FIXED: Allows links to wrap beautifully instead of breaking container width */
-        justify-content: center !important; /* Centers links beautifully on mobile layouts */
-        gap: 0.6rem 1.2rem !important;
-        width: 100% !important;
-        padding: 0.4rem 0 0.2rem 0 !important;
-        margin-left: 0 !important;
-        overflow-x: visible !important; /* Disables buggy horizontal tracks */
-    }
-
-    /* Restores link text contrast and legibility */
-    .side-nav-btn {
-        font-size: 0.88rem !important;
-        flex-shrink: 0 !important;
-        opacity: 0.85 !important; /* FIXED: Boosted visibility so they aren't ghosted/faded */
-        transform: scale(1) !important; /* Resets layout scale distortion */
-        transition: color 0.25s ease, opacity 0.25s ease;
-    }
-
-    .side-nav-btn:hover,
-    .side-nav-btn.active,
-    .side-nav-btn.active-scroll {
-        opacity: 1 !important;
-        color: var(--accent-antique-rose) !important;
-    }
-
-    /* Mobile Dropdown Panel Fix */
+/* ─── MOBILE INVARIANT RESOLUTION ─── */
+@media (max-width: 900px) {
+    /* Wipes out bottom drawer logic entirely so it anchors to button layout */
     .lang-bookmark-content {
-        position: fixed !important;
-        top: auto !important;
-        bottom: 20px !important;
-        left: 50% !important;
-        right: auto !important;
-        transform: translateX(-50%) translateY(120%) !important;
-        width: calc(100vw - 32px) !important;
-        max-width: 340px !important;
-        z-index: 1000000 !important;
-        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease !important;
+        position: absolute !important;
+        top: 100% !important;
+        bottom: auto !important;
+        left: auto !important;
+        right: 0 !important;
+        width: 180px !important;
+        transform: translateY(-5px) !important;
+    }
+    
+    .lang-bookmark-trigger.active-dropdown .lang-bookmark-content {
+        transform: translateY(0) !important;
     }
 
-    .lang-bookmark-trigger.active-dropdown .lang-bookmark-content {
-        opacity: 1 !important;
-        visibility: visible !important;
-        transform: translateX(-50%) translateY(0) !important;
+    .lang-bookmark-trigger {
+        padding-right: 0 !important;
     }
 }
 
-/* ─── INDEX SPECIFIC CORE OVERRIDES (FIXED SYNTAX) ─── */
-body {
-    background-color: var(--bg-porcelain);
-    overflow-x: hidden;
-    margin: 0;
+@media (max-width: 900px) {
+    .header-inner {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 0.8rem;
+        padding: 1.2rem 1rem;
+    }
+
+    .sidebar-links {
+        gap: 0.5rem 1rem;
+        max-width: 500px;
+    }
+
+    .side-nav-btn {
+        font-size: 0.85rem;
+    }
+
 }
 
 /* ─── ASYMMETRICAL EDITORIAL DATA CARDS ─── */
@@ -1091,6 +1026,113 @@ html[lang="zh"], html[lang="zh"] * { font-family: 'ChineseLocal', sans-serif; fo
     opacity: 1;
 }
 
+/* ==========================================================================
+   ULTRA-RESPONSIVE COMPACT HEADER GRID SYSTEM (MOBILE FIX)
+   ========================================================================== */
+@media (max-width: 900px) {
+    .top-header-navigation {
+        height: auto !important; /* Defends against height collapse bugs */
+    }
+
+    .header-inner {
+        display: grid !important;
+        grid-template-columns: 1fr auto !important;
+        grid-template-rows: auto auto !important;
+        gap: 0.5rem 0rem !important;
+        padding: 0.9rem 0rem 0rem 0rem !important; /* Spacing shifted into track for seamless fill */
+        width: 100% !important;
+        box-sizing: border-box;
+    }
+
+    /* Pinned Left Header Brand Group */
+    .sidebar-brand {
+        grid-column: 1;
+        grid-row: 1;
+        justify-self: start;
+        align-self: center;
+        font-size: 1.05rem;
+        padding-left: 1rem;
+    }
+
+    /* Pinned Right Isolated Language Trigger */
+    .lang-bookmark-trigger {
+        grid-column: 2;
+        grid-row: 1;
+        justify-self: end;
+        align-self: center;
+        padding-right: 1rem;
+    }
+
+    /* Full-Width Swipe Selection Track */
+    .sidebar-links {
+        grid-column: 1 / span 2;
+        grid-row: 2;
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        width: 100% !important; /* Fixed: Prevents breaking parent height calculations */
+        margin-left: 0 !important; /* Fixed: Removes horizontal layout shifts */
+        padding: 0.6rem 1rem 0.9rem 1rem !important; /* Forces header box to stretch completely */
+        gap: 1.6rem !important;
+        justify-content: flex-start !important;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    .sidebar-links::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Custom Mobile Scale Invariants */
+    .side-nav-btn {
+        font-size: 0.9rem !important;
+        flex-shrink: 0 !important;
+        scroll-snap-align: center;
+        opacity: 0.4; 
+        transform: scale(0.92);
+        transition: transform 0.25s ease, opacity 0.25s ease, color 0.25s ease;
+    }
+
+    /* Dynamic Highlight Class */
+    .side-nav-btn.active-scroll {
+        opacity: 1 !important;
+        transform: scale(1.06) !important;
+        color: var(--type-dusty-mauve) !important;
+    }
+
+    /* 1. Reset desktop hover behavior so it doesn't break mobile taps */
+    .lang-bookmark-trigger:hover .lang-bookmark-content {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        transform: translateX(-50%) translateY(120%) !important;
+    }
+
+    /* 2. The mobile bottom drawer base state */
+    .lang-bookmark-content {
+        position: fixed !important;
+        top: auto !important;
+        bottom: 20px !important;
+        left: 50% !important;
+        right: auto !important;
+        width: calc(100vw - 32px) !important;
+        max-width: 340px !important;
+        z-index: 1000000 !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        transform: translateX(-50%) translateY(120%) !important;
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, visibility 0.4s !important;
+    }
+
+    /* 3. ONLY open the drawer when explicitly clicked/tapped (via the JS class) */
+    .lang-bookmark-trigger.active-dropdown .lang-bookmark-content,
+    .lang-bookmark-trigger.active-dropdown:hover .lang-bookmark-content {
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: translateX(-50%) translateY(0) !important;
+    }
+}
+
 /* ─── INDEX SPECIFIC CORE OVERRIDES ─── */
         body {
             background-color: var(--bg-porcelain);
@@ -1128,7 +1170,7 @@ html[lang="zh"], html[lang="zh"] * { font-family: 'ChineseLocal', sans-serif; fo
 
         .marquee-content {
             display: flex;
-            animation: marquee-infinite 35s linear infinite; /* Adjust time here to make it faster/slower */
+            animation: marquee-infinite 20s linear infinite; /* Adjust time here to make it faster/slower */
         }
 
         .marquee-content span {
@@ -1146,5 +1188,3 @@ html[lang="zh"], html[lang="zh"] * { font-family: 'ChineseLocal', sans-serif; fo
                 transform: translate3d(-50%, 0, 0);
             }
         }
-
-        /* ─── GLOBAL COQUETTE EDITORIAL THEME MATRIX ─── */
